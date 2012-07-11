@@ -1,0 +1,58 @@
+/*!
+ * SIDE-Labs Library 2.0.0
+ * Copyright(c) 2006-2010 BlueXML SARL
+ * licensing@bluexml.com
+ * http://www.bluexml.com/license
+ */
+
+goog.provide('SIDE.component.view.ContentPreviewer');
+
+/**
+ * @namespace SIDE.component.view.ContentPreviewer
+ */
+SIDE.component.view.ContentPreviewer = function(record) {
+	var n = record.value.data;
+
+	var extract = function(aString) {
+		return /\/([^\/]*)$/.exec(aString)[1].substring(0, 15);
+	}
+
+	var config = {
+	    'title': 		n.prop_cmis_name || 'Fichier PDF',
+	    'id': 			'contentpanel-' + n.id,
+	    'closable': 	true,
+	    'split': 'true',
+//	    'layout': 		'column',
+	    //'tabPosition': 'bottom',
+//	    'bodyStyle': 	'padding:5px',
+	    'bodyStyle': 	'padding:0px',
+	    //'autoScroll': true,
+	    'height': 		500,
+//	    'items': [{
+	    	//'id': 'test2',
+//	    	'columnWidth': .99,
+            'baseCls': 		'x-plain',
+//            'bodyStyle': 	'padding:5px 0 5px 5px',
+            'bodyStyle': 	'padding:0px',
+//            'items': [{
+//                'title': 	'Preview',
+                'border': 	false,
+				'id': 		'previewpanel-' + n.id,
+				'html': 	'<div id="preview-' + n.id + '"></div>'
+//	    	}]
+//	    }]
+	}
+
+    var extension = new Ext.Panel(config);
+
+    Ext.getCmp('tab-panel').add(extension);
+	Ext.getCmp('tab-panel').activate(extension);
+
+    //var re = /pdf.gif$/;
+    var re = new RegExp("pdf");
+	if (!re.test(n.prop_cmis_contentStreamMimeType)) {
+		SIDE.params.flashPreview.update(document.getElementById('preview-' + n.id), n)
+	} else {
+		SIDE.params.PDFPreview.update(document.getElementById('preview-' + n.id), n)
+	}
+};
