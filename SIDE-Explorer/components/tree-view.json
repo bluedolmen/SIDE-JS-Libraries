@@ -1,0 +1,264 @@
+[{
+	text: 'Person_DataList2',
+	children:[
+	{
+		text:'ExtJs',
+		children:[
+	    {
+	        text:'Person_DataList2 - Simple grid',
+	        id:'Person_DataList2/extJs/json-simple-grid',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_DataList2 - Editable grid - version 1',
+	        id:'Person_DataList2/extJs/json-editable-grid-1',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_DataList2 - Editable grid - version 2',
+	        id:'Person_DataList2/extJs/json-editable-grid-2',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_DataList2 - Paging',
+	        id:'Person_DataList2/extJs/json-paging',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_DataList2 - Grouping',
+	        id:'Person_DataList2/extJs/json-grouping',
+	        leaf:true
+	    }]
+	},
+	{
+		text:'Dojo',
+		children:[
+		{
+        	text:'Person_DataList2 - Simple grid',
+        	id:'Person_DataList2/dojo/simple-grid',
+        	leaf:true
+    	}]
+	}
+	
+	]
+}, 
+{
+	text: 'Event_DataList2',
+	children:[
+	{
+		text:'ExtJs',
+		children:[
+	    {
+	        text:'Event_DataList2 - Simple grid',
+	        id:'Event_DataList2/extJs/json-simple-grid',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_DataList2 - Editable grid - version 1',
+	        id:'Event_DataList2/extJs/json-editable-grid-1',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_DataList2 - Editable grid - version 2',
+	        id:'Event_DataList2/extJs/json-editable-grid-2',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_DataList2 - Paging',
+	        id:'Event_DataList2/extJs/json-paging',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_DataList2 - Grouping',
+	        id:'Event_DataList2/extJs/json-grouping',
+	        leaf:true
+	    }]
+	},
+	{
+		text:'Dojo',
+		children:[
+		{
+        	text:'Event_DataList2 - Simple grid',
+        	id:'Event_DataList2/dojo/simple-grid',
+        	leaf:true
+    	}]
+	}
+	
+	]
+}, 
+{
+	text: 'Person_FacetMap_Facets',
+	children:[
+	{
+		text:'ExtJs',
+		children:[
+	    {
+	        text:'Person_FacetMap_Facets - Simple grid',
+	        id:'Person_FacetMap_Facets/extJs/json-simple-grid',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_FacetMap_Facets - Editable grid - version 1',
+	        id:'Person_FacetMap_Facets/extJs/json-editable-grid-1',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_FacetMap_Facets - Editable grid - version 2',
+	        id:'Person_FacetMap_Facets/extJs/json-editable-grid-2',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_FacetMap_Facets - Paging',
+	        id:'Person_FacetMap_Facets/extJs/json-paging',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_FacetMap_Facets - Grouping',
+	        id:'Person_FacetMap_Facets/extJs/json-grouping',
+	        leaf:true
+	    }]
+	},
+	{
+		text:'Dojo',
+		children:[
+		{
+        	text:'Person_FacetMap_Facets - Simple grid',
+        	id:'Person_FacetMap_Facets/dojo/simple-grid',
+        	leaf:true
+    	}]
+	}
+	
+	]
+}, 
+{
+	text: 'Event_FacetMap_Facets',
+	children:[
+	{
+		text:'ExtJs',
+		children:[
+	    {
+	        text:'Event_FacetMap_Facets - Simple grid',
+	        id:'Event_FacetMap_Facets/extJs/json-simple-grid',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_FacetMap_Facets - Editable grid - version 1',
+	        id:'Event_FacetMap_Facets/extJs/json-editable-grid-1',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_FacetMap_Facets - Editable grid - version 2',
+	        id:'Event_FacetMap_Facets/extJs/json-editable-grid-2',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_FacetMap_Facets - Paging',
+	        id:'Event_FacetMap_Facets/extJs/json-paging',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_FacetMap_Facets - Grouping',
+	        id:'Event_FacetMap_Facets/extJs/json-grouping',
+	        leaf:true
+	    }]
+	},
+	{
+		text:'Dojo',
+		children:[
+		{
+        	text:'Event_FacetMap_Facets - Simple grid',
+        	id:'Event_FacetMap_Facets/dojo/simple-grid',
+        	leaf:true
+    	}]
+	}
+	
+	]
+}, 
+{
+	text: 'Person_DataTable',
+	children:[
+	{
+		text:'ExtJs',
+		children:[
+	    {
+	        text:'Person_DataTable - Simple grid',
+	        id:'Person_DataTable/extJs/json-simple-grid',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_DataTable - Editable grid - version 1',
+	        id:'Person_DataTable/extJs/json-editable-grid-1',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_DataTable - Editable grid - version 2',
+	        id:'Person_DataTable/extJs/json-editable-grid-2',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_DataTable - Paging',
+	        id:'Person_DataTable/extJs/json-paging',
+	        leaf:true
+	    },
+	    {
+	        text:'Person_DataTable - Grouping',
+	        id:'Person_DataTable/extJs/json-grouping',
+	        leaf:true
+	    }]
+	},
+	{
+		text:'Dojo',
+		children:[
+		{
+        	text:'Person_DataTable - Simple grid',
+        	id:'Person_DataTable/dojo/simple-grid',
+        	leaf:true
+    	}]
+	}
+	
+	]
+}, 
+{
+	text: 'Event_DataTable',
+	children:[
+	{
+		text:'ExtJs',
+		children:[
+	    {
+	        text:'Event_DataTable - Simple grid',
+	        id:'Event_DataTable/extJs/json-simple-grid',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_DataTable - Editable grid - version 1',
+	        id:'Event_DataTable/extJs/json-editable-grid-1',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_DataTable - Editable grid - version 2',
+	        id:'Event_DataTable/extJs/json-editable-grid-2',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_DataTable - Paging',
+	        id:'Event_DataTable/extJs/json-paging',
+	        leaf:true
+	    },
+	    {
+	        text:'Event_DataTable - Grouping',
+	        id:'Event_DataTable/extJs/json-grouping',
+	        leaf:true
+	    }]
+	},
+	{
+		text:'Dojo',
+		children:[
+		{
+        	text:'Event_DataTable - Simple grid',
+        	id:'Event_DataTable/dojo/simple-grid',
+        	leaf:true
+    	}]
+	}
+	
+	]
+}]
