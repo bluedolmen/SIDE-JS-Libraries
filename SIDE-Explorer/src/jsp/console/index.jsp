@@ -81,7 +81,7 @@
 
     <script type="text/javascript" src="index-metadata.js"></script>
     <script type="text/javascript" src="index-layout.js"></script>
-    <script type="text/javascript" src="http://localhost:8880/side-demo/console/index-main.js?key=64e53bb3c427fd800361260f2f0845add4ad6c46"></script>
+    <script type="text/javascript" src="/side-demo/console/index-main.js?key=64e53bb3c427fd800361260f2f0845add4ad6c46"></script>
 </head>
 <body style="background-color: white;">
 
