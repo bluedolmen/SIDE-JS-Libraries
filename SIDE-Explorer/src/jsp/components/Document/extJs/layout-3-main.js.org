@@ -1,0 +1,101 @@
+	goog.require("SIDE.Util");
+	goog.require("SIDE.pattern.Observer");
+	goog.require("SIDE.view.ui.FlashPreview");
+	goog.require("SIDE.view.ui.PDFPreview");
+	goog.require("SIDE.view.ui.Tree");
+	goog.require("SIDE.model.view.View");
+	goog.require("SIDE.security.Authenticator");
+
+	Ext.onReady(function() {
+	    Ext.QuickTips.init();
+
+		SIDE.pattern.Observer.subscribe("/authenticate/ticket", function(data) {
+			SIDE.pattern.Observer.log.debug("Authenticate/ticket : Data = ", data);
+			var ticket = data.value;
+			var tree = new SIDE.view.ui.Tree({
+				pUrl: SIDE.params.alfresco + "/service/cmis/p?alf_ticket=" + ticket,
+				iUrl: SIDE.params.alfresco + "/service/cmis",
+				ticket: ticket,
+				height: "200px",
+				id: 'repository-explorer',
+				rootText: 'Alfresco Repo',
+				messageName: '/repository/uuid'
+			});
+			tree.load();
+		});
+		
+		SIDE.pattern.Observer.subscribe("/authenticate/ticket", function(data) {
+			new SIDE.component.view.MainView(null, {
+				url: SIDE.Util.getParam("viewWebService"),
+				ticket: data.value,
+				channel: '/repository/uuid'				
+			});
+		});
+		
+		SIDE.pattern.Observer.subscribe("/repository/uuid", function(data) {
+			var n = data;
+
+			var extract = function(aString) {
+				return /\/([^\/]*)$/.exec(aString)[1].substring(0, 15);
+			}
+
+			var formConfig = {
+			    //title: 'Metadata',
+			    id: 'form-' + n.value.id,
+			    autoScroll: true,
+			    height: 600,
+                border: false,					    
+			    defaultSrc: SIDE.params.share + '/page/standalonecreateform?itemId=yamma:com_sidelabs_is_operational_yamma_Document'
+			}
+		    var formPanel = new Ext.ux.ManagedIFrame.Panel(formConfig);
+		    
+			var config = {
+			    title: n.value.text || extract(n.value.data.url) || 'Fichier PDF',
+			    id: 'combinedpanel-' + n.value.id,
+			    closable: true,
+			    layout: 'column',
+			    //tabPosition: 'bottom',
+			    bodyStyle: 'padding:25px',
+			    autoScroll: true,
+			    height: 600,
+			    items: [{
+			    	id: 'test2',
+			    	columnWidth:.49,
+                    baseCls:'x-plain',
+                    bodyStyle:'padding:5px 0 5px 5px',
+                    items: [{
+                        //title: 'Preview',
+                        border: false,
+						id: 'previewpanel-' + n.value.id,
+						height: '100%',
+						html: '<div id="preview-' + n.value.id + '"></div>'
+			    	}]
+			    },{
+			    	columnWidth:.49,
+                    baseCls:'x-plain',
+                    bodyStyle:'padding:5px 0 5px 5px',
+			    	items: [formPanel]
+				}]
+			}
+
+		    var extension = new Ext.Panel(config);
+								
+		    Ext.getCmp('tab-panel').add(extension);
+			Ext.getCmp('tab-panel').activate(extension);
+
+			// It's either flash either pdf, except in test mode ;-)
+			//config.id = 'previewpanelPDF-' + n.value.id;
+		    //var extensionPDF = new Ext.ux.ManagedIFrame.Panel(config);
+		    
+		    //var re = /pdf.gif$/;
+		    var re = new RegExp("pdf.gif$");
+			if (!re.test(n.value.data.icon32)) {
+				SIDE.params.flashPreview.update(document.getElementById('preview-' + n.value.id), data.value)
+			} else {
+				SIDE.params.PDFPreview.update(document.getElementById('preview-' + n.value.id), data.value)
+			}
+		});
+
+		var guardian = new SIDE.security.Authenticator(SIDE.params.alfresco + "/service/api/login");
+		guardian.getTicket("admin", "admin"); 
+	});

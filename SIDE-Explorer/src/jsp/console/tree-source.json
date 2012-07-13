@@ -1,0 +1,33 @@
+
+	[
+		{
+			text: 'Data',
+			url: "http://localhost:8087/alfresco/wcs/com/bluexml/side/view/yamma_share/Contact_DataList.xml",
+			id: '9991',
+			leaf: 'true'
+		},
+		{
+			text: 'Form',
+			url: "http://localhost:8087/alfresco/wcs/com/bluexml/side/view/yamma_share/Contact_DataList.xml",
+			id: '9992',
+			leaf: 'true'
+		},
+		{
+			text: 'View',
+			url: "http://localhost:8087/alfresco/wcs/com/bluexml/side/view/yamma_share/Document_DataList_Main.xml",
+			id: '9993',
+			leaf: 'true'
+		},
+		{
+			text: 'Workflow',
+			url: "http://localhost:8087/alfresco/wcs/com/bluexml/side/view/yamma_share/Document_DataList_Main.xml",
+			id: '9994',
+			leaf: 'true'
+		},
+		{
+			text: 'Portal',
+			url: "http://localhost:8087/alfresco/wcs/com/bluexml/side/view/yamma_share/Document_DataList_Main.xml",
+			id: '9995',
+			leaf: 'true'
+		}
+	]

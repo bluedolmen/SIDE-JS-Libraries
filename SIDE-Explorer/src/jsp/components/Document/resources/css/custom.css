@@ -1,0 +1,22 @@
+.col1 {
+	float: left;
+	width: 250px;
+}
+
+#repository-explorer {
+	float: left;
+	height: 500px;
+	width: 250px;}
+
+#detail-view {
+	float: right;
+}
+
+#preview {
+	min-width: 500px;
+}
+
+.col2 {
+	min-width: 500px;
+	float: right;
+}

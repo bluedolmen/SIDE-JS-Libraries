@@ -1,0 +1,22 @@
+[
+	{
+	    text:'Overview...',
+	    url: WorkflowHost + '/wf_demo/login.jsp',
+	    leaf: true
+	},
+	{
+	    text:'Launch...',
+	    url: WorkflowHost + '/wf_demo/launch.jsp',
+	    leaf: true
+	},
+	{
+	    text:'Pooled Tasks',
+	    url: WorkflowHost + '/wf_demo/pooled.jsp',
+	    leaf: true
+	},
+	{
+    	text:'Manage',
+    	url: WorkflowHost + '/wf_demo/manage.jsp',
+	    leaf: true
+	}
+]

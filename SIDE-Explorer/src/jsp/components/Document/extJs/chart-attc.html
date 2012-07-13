@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- page specific -->
+	<style type="text/css">
+	@import url(http://localhost:8880/resources/common/js/misc/auto-table-to-chart/css/flash_chart_style.css);
+	@import url(http://localhost:8880/resources/common/js/misc/auto-table-to-chart/css/example.css);
+	</style>
+
+    <script type="text/javascript" src="/resources/common/js/extJs/ext-3.2.1/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="/resources/common/js/extJs/ext-3.2.1/ext-all.js"></script>
+	<script type="text/javascript" src="/resources/common/js/extJs/ux-3.2.1/ux-all.js"></script>
+	<script type="text/javascript" src="/resources/common/js/dojo/dojo-1.5.xd.js"></script>
+    <script type="text/javascript" src="/resources/common/js/misc/log4javascript.js"></script>
+
+	<script type="text/javascript" src="/resources/common/js/side-labs/default/String.js"></script>
+    <script type="text/javascript" src="/resources/common/js/side-labs/deepCopy.js"></script>
+
+    <script type="text/javascript" src="/resources/common/js/side-labs/SIDE/Base.js"></script>
+    <script type="text/javascript" src="/resources/common/js/side-labs/SIDE/Util.js"></script>
+    <script type="text/javascript" src="/resources/common/js/side-labs/SIDE/pattern/Observer.js"></script>
+    <script type="text/javascript" src="/resources/common/js/side-labs/SIDE/model/view/Metadata.js"></script>
+    <script type="text/javascript" src="/resources/common/js/side-labs/SIDE/security/Authenticator.js"></script>
+
+	<script type="text/javascript" src="/resources/common/js/side-labs/misc/SIDE_Chart.js"></script>
+    <script type="text/javascript" src="../chart.properties"></script>
+
+	<script type="text/javascript" src="http://localhost:8880/resources/common/js/misc/auto-table-to-chart/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="http://localhost:8880/resources/common/js/misc/auto-table-to-chart/js/openflashchart/js/swfobject.js"></script>
+	<script type="text/javascript" src="http://localhost:8880/resources/common/js/misc/auto-table-to-chart/js/openflashchart/js/json2.js"></script>
+	<script type="text/javascript" src="http://localhost:8880/resources/common/js/misc/auto-table-to-chart/js/attc.js"></script>
+	
+	<script type="text/javascript">
+//	function showChart(result, request) {
+	function showChart(data) {
+//		data = result.
+		var chart = new SIDE_Chart(data, table);
+		chart.convertData2Chart();
+		initattc();
+	}
+	
+	function showView(data) {
+		var ticket = data.value;
+//		var url = "/alfresco/service/com/bluexml/side/view/yamma_share/Document_DataList_Main.json",
+//		var url = SIDE_Util.addProxyService(viewWebService + "?alf_ticket=" + ticket, "text/json");		
+		var xhrArgs = {
+			url: SIDE.Util.getParam("viewWebService") + "?alf_ticket=" + ticket,
+			mimeType: "text/json",
+			async: false,
+			success: showChart,
+			failure: function() {
+				// Error
+			}
+		};
+		var data = SIDE.Util.get(xhrArgs);
+	}
+	
+    Ext.onReady(function() {
+		SIDE.pattern.Observer.subscribe("/authenticate/ticket", showView);
+		var guardian = new SIDE.security.Authenticator("http://localhost:8087/alfresco/service/api/login");
+		guardian.getTicket("admin", "admin"); 
+    })
+
+	</script>
+
+</head>
+<body>
+    <div id="component"></div>
+</body>
+</html>
