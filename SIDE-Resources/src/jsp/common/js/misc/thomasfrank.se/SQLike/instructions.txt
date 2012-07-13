@@ -1,0 +1,5 @@
+SQLIKE
+
+Goto:
+http://www.thomasfrank.se/sqlike.html 
+for instructions about how to use SQLike

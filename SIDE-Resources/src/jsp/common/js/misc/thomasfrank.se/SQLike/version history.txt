@@ -1,0 +1,4 @@
+2010-06-01 Version 1.02 First official release.
+
+2010-06-12 Version 1.021 Bug fix: ORDER BY didn't work properly with several arguments. Fixed.
+           Thanks to Christophe Humbert for reporting the bug.
