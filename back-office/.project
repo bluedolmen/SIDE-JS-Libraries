@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>back-office</name>
+	<comment></comment>
+	<projects>
+		<project>Model-library-Alfresco-4.0.d-CE</project>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+		<nature>com.bluexml.side.integration.eclipse.nature</nature>
+	</natures>
+</projectDescription>

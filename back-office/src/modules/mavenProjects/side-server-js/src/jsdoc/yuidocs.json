@@ -1,0 +1,14 @@
+{
+    "name": "SIDE-Labs Library server",
+    "description": "A set of libraries to make Alfesco JS development easier",
+    "version": "1.0.0",
+    "url": "http://www.side-labs.org",
+    "options": {
+        "linkNatives": "true",
+        "attributesEmit": "false",
+        "selleck": "true",
+        "ignorePaths": [],
+        "paths": "src/main/resources/alfresco/webscripts/extension/js",
+        "outdir": "target/api-js"
+    }
+}

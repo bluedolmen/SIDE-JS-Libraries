@@ -1,0 +1,98 @@
+MavenUtil execute maven request :
+** args :mvn archetype:generate -B -e -DarchetypeGroupId=com.bluexml.side.Framework.maven -DgroupId=org.sidelabs.js -DarchetypeArtifactId=ampArchetypeForSide_40d -Dinteractive=false -DarchetypeVersion=1.0.5 -DartifactId=side-server-js -Dproject-name=side-server-js -Dwebapp-name=share -Dversion=1.0
+** working directory :/Users/bluexml/opt/local/workspaces/demos/JS-library-SIDE/src/modules/mavenProjects
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.sidelabs.js:side-external-server-js:amp:1.0
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 115, column 12
+[WARNING] 'build.plugins.plugin.version' for org.codehaus.mojo:buildnumber-maven-plugin is missing. @ line 97, column 12
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] JS-library-SIDE
+[INFO] side-external-server-js
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building JS-library-SIDE 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] >>> maven-archetype-plugin:2.2:generate (default-cli) @ JS-library-SIDE >>>
+[INFO] 
+[INFO] <<< maven-archetype-plugin:2.2:generate (default-cli) @ JS-library-SIDE <<<
+[INFO] 
+[INFO] --- maven-archetype-plugin:2.2:generate (default-cli) @ JS-library-SIDE ---
+[INFO] Generating project in Batch mode
+07:13:51.444 [main] DEBUG c.n.h.c.p.n.NettyAsyncHttpProvider - 
+Non cached request 
+DefaultHttpRequest(chunked: false)
+GET /maven2/archetype-catalog.xml HTTP/1.1
+Host: repo1.maven.org
+Pragma: no-cache
+Cache-Control: no-cache, no-store
+Accept-Encoding: gzip
+Connection: keep-alive
+Accept: */*
+User-Agent: Apache-Maven
+
+using Channel 
+[id: 0x01c9df11, /192.168.0.5:52506 => repo1.maven.org/93.184.221.133:80]
+
+07:13:51.477 [New I/O client worker #238-1] DEBUG c.n.h.c.p.n.NettyAsyncHttpProvider - 
+
+Request DefaultHttpRequest(chunked: false)
+GET /maven2/archetype-catalog.xml HTTP/1.1
+Host: repo1.maven.org
+Pragma: no-cache
+Cache-Control: no-cache, no-store
+Accept-Encoding: gzip
+Connection: keep-alive
+Accept: */*
+User-Agent: Apache-Maven
+
+Response DefaultHttpResponse(chunked: true)
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Content-Type: text/xml
+Date: Tue, 10 Jul 2012 05:13:48 GMT
+Last-Modified: Sun, 08 Jul 2012 11:51:43 GMT
+Server: ECAcc (cdg/D6DD)
+X-Cache: HIT
+Content-Length: 1029677
+
+07:13:52.422 [New I/O client worker #238-1] DEBUG c.n.h.c.p.n.NettyAsyncHttpProvider - Adding uri: http://repo1.maven.org:80 for channel [id: 0x01c9df11, /192.168.0.5:52506 => repo1.maven.org/93.184.221.133:80]
+[WARNING] Archetype not found in any catalog. Falling back to central repository (http://repo1.maven.org/maven2).
+[WARNING] Use -DarchetypeRepository=<your repository> if archetype's repository is elsewhere.
+[INFO] ----------------------------------------------------------------------------
+[INFO] Using following parameters for creating project from Archetype: ampArchetypeForSide_40d:1.0.5
+[INFO] ----------------------------------------------------------------------------
+[INFO] Parameter: groupId, Value: org.sidelabs.js
+[INFO] Parameter: artifactId, Value: side-server-js
+[INFO] Parameter: version, Value: 1.0
+[INFO] Parameter: package, Value: org.sidelabs.js
+[INFO] Parameter: packageInPathFormat, Value: org/sidelabs/js
+[INFO] Parameter: package, Value: org.sidelabs.js
+[INFO] Parameter: version, Value: 1.0
+[INFO] Parameter: groupId, Value: org.sidelabs.js
+[INFO] Parameter: project-description, Value: this is a new Amp project generated using	"com.bluexml.side.Integration.m2.ampArchetype" thanks to change this description
+[INFO] Parameter: project-name, Value: side-server-js
+[INFO] Parameter: artifactId, Value: side-server-js
+[INFO] project created from Archetype in dir: /Users/bluexml/opt/local/workspaces/demos/JS-library-SIDE/src/modules/mavenProjects/side-server-js
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] JS-library-SIDE ................................... SUCCESS [3.044s]
+[INFO] side-external-server-js ........................... SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.426s
+[INFO] Finished at: Tue Jul 10 07:13:53 CEST 2012
+[INFO] Final Memory: 444M/505M
+[INFO] ------------------------------------------------------------------------
+[WARNING] The requested profile "public" could not be activated because it does not exist.

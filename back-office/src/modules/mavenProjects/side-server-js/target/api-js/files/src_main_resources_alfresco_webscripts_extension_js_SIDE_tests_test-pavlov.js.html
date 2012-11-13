@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src&#x2F;main&#x2F;resources&#x2F;alfresco&#x2F;webscripts&#x2F;extension&#x2F;js&#x2F;SIDE&#x2F;tests&#x2F;test-pavlov.js - SIDE-Labs Library server</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.1&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.5.1&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title="SIDE-Labs Library server"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/Logger.html">Logger</a></li>
+            
+                <li><a href="..&#x2F;classes/Search.html">Search</a></li>
+            
+                <li><a href="..&#x2F;classes/SIDE.html">SIDE</a></li>
+            
+                <li><a href="..&#x2F;classes/SIDE.Alfresco.Helper.DataLists.Folder.html">SIDE.Alfresco.Helper.DataLists.Folder</a></li>
+            
+                <li><a href="..&#x2F;classes/SIDE.Alfresco.Helper.Util.AutoUpdate.html">SIDE.Alfresco.Helper.Util.AutoUpdate</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/SIDE.Alfresco.html">SIDE.Alfresco</a></li>
+            
+                <li><a href="..&#x2F;modules/SIDE.Alfresco.Helper.html">SIDE.Alfresco.Helper</a></li>
+            
+                <li><a href="..&#x2F;modules/SIDE.Util.html">SIDE.Util</a></li>
+            
+                <li><a href="..&#x2F;modules/SIDE.YaMma.html">SIDE.YaMma</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src&#x2F;main&#x2F;resources&#x2F;alfresco&#x2F;webscripts&#x2F;extension&#x2F;js&#x2F;SIDE&#x2F;tests&#x2F;test-pavlov.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+module(&quot;Standard QUnit module&quot;);
+var firstStandardQUnitTestRan = false;
+test(&quot;should be able to run before Pavlov&#x27;s QUnit Adapter&quot;, function() {
+    expect(1);
+    firstStandardQUnitTestRan = true;
+    ok(firstStandardQUnitTestRan);
+});
+
+&#x2F;&#x2F; intercept calls to adapter methods for testing they were run
+var capturedSuiteName;
+var adapterMethods = {
+    initiate: pavlov.adapter.initiate
+};
+pavlov.util.extend(pavlov.adapter, {
+    initiate: function(suiteName) {
+        capturedSuiteName = suiteName;
+        adapterMethods.initiate(suiteName);
+    }
+});
+
+var global = this;
+
+
+(function(){
+    var isArray = function(obj) {
+        return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    };
+    var contentsEqual = function(actual, expected) {
+        if(actual === null) {
+            throw &quot;Actual argument required&quot;;
+        }
+        if(expected === null) {
+            throw &quot;Expected argument required&quot;;
+        }
+        if(actual.length !== expected.length) {
+            ok(false, message);
+            return false;
+        }
+        var areEqual = true;
+        for(var i = 0;i &lt; actual.length; i++) {
+            if(isArray(expected[i]) &amp;&amp; isArray(actual[i])) {
+                areEqual = areEqual &amp;&amp; contentsEqual(expected[i], actual[i]);
+            } else {
+                areEqual = areEqual &amp;&amp; (expected[i] == actual[i]);
+            }
+            if(!areEqual) {
+                break;
+            }
+        }
+        return areEqual;
+    };
+    pavlov.extendAssertions({
+        &#x2F;**
+         * Asserts two arrays contain same values
+         *&#x2F;
+        contentsEqual: function(actual, expected, message){
+            var areEqual = contentsEqual(actual, expected);
+            pavlov.adapter.assert(areEqual, message);
+        }
+    });
+}())
+
+pavlov.specify(&quot;Pavlov&quot;, function() {
+
+    &#x2F;* quick and dirty mocking of native qunit functions
+     * temporarily replaces a method in window namespace with one
+     * that just gathers and returns the values of passed arguments
+     * undoes mocking after scope completes
+     *&#x2F;
+    var mock = function(object, methodName, callback){
+        var args = [],
+            originalMethod,
+            parts, i;
+        try {
+            originalMethod = object[methodName];
+            object[methodName] = function(){
+                args = makeArray(arguments);
+            };
+            if(callback.apply(this, args) === true) {
+                originalMethod.apply(object, args);
+            }
+        } finally {
+            object[methodName] = originalMethod;
+        }
+        return args;
+    };
+    var makeArray = function(args) {
+        return Array.prototype.slice.call(args);
+    };
+
+    describe(&quot;version&quot;, function(){
+        it(&quot;should return the current version&quot;, function(){
+            assert(pavlov.version).equals(&#x27;0.3.0pre&#x27;);
+        });
+    });
+
+    describe(&quot;adapter&quot;, function(){
+        describe(&quot;name&quot;, function(){
+            it(&quot;should be the name passed to adapt&quot;, function(){
+                assert(pavlov.adapter.name).isEqualTo(&#x27;QUnit&#x27;);
+            });
+        });
+    });
+
+    describe(&quot;adapt()&quot;, function(){
+        it(&quot;should throw exception if not passed frameworkName or testFrameworkAdapter&quot;, function(){
+            assert(function(){
+                pavlov.adapt();
+            }).throwsException(&quot;both &#x27;frameworkName&#x27; and &#x27;testFrameworkAdapter&#x27; arguments are required&quot;);
+            assert(function(){
+                pavlov.adapt(&#x27;name&#x27;);
+            }).throwsException(&quot;both &#x27;frameworkName&#x27; and &#x27;testFrameworkAdapter&#x27; arguments are required&quot;);
+            assert(function(){
+                pavlov.adapt(&#x27;name&#x27;, null);
+            }).throwsException(&quot;both &#x27;frameworkName&#x27; and &#x27;testFrameworkAdapter&#x27; arguments are required&quot;);
+        });
+        it(&quot;should extend pavlov.adapter&quot;, function(){
+            var fakeMethod = function(){};
+            pavlov.adapt(&quot;Adapter Name&quot;, {
+                fakeMethod: fakeMethod
+            });
+            assert(pavlov.adapter.name).equals(&quot;Adapter Name&quot;);
+            assert(pavlov.adapter.fakeMethod).isStrictlyEqualTo(fakeMethod);
+        });
+    });
+
+    describe(&quot;util&quot;, function(){
+        describe(&quot;each()&quot;, function(){
+            var targetObject = { a: 1, b: 2 };
+            var targetArray = [&quot;abc&quot;,&quot;def&quot;];
+            it(&quot;should throw exception if not passed object or callback&quot;, function(){
+                assert(function(){
+                    pavlov.util.each();
+                }).throwsException(&quot;both &#x27;target&#x27; and &#x27;callback&#x27; arguments are required&quot;);
+                assert(function(){
+                    pavlov.util.each(targetObject);
+                }).throwsException(&quot;both &#x27;target&#x27; and &#x27;callback&#x27; arguments are required&quot;);
+                assert(function(){
+                    pavlov.util.each(targetObject, null);
+                }).throwsException(&quot;both &#x27;target&#x27; and &#x27;callback&#x27; arguments are required&quot;);
+            });
+            it(&quot;should iterate over array when passed an array&quot;, function(){
+                var keyValuePairs = [];
+                pavlov.util.each(targetArray, function(index, value){
+                    keyValuePairs.push([index, value]);
+                });
+                assert(keyValuePairs).contentsEqual([[0,&quot;abc&quot;],[1,&quot;def&quot;]]);
+            });
+            it(&quot;should iterate object members when passed an object&quot;, function(){
+                var keyValuePairs = [];
+                pavlov.util.each(targetObject, function(key, value){
+                    keyValuePairs.push([key, value]);
+                });
+                assert(keyValuePairs).contentsEqual([[&quot;a&quot;,1],[&quot;b&quot;,2]]);
+            });
+        });
+        describe(&quot;extend()&quot;, function(){
+            var target = { a: 1, b: 2, c: 3 };
+            var source = { c: 5, d: 6, e: 7 };
+            it(&quot;should throw exception if not passed source or target&quot;, function(){
+                assert(function(){
+                    pavlov.util.extend();
+                }).throwsException(&quot;both &#x27;source&#x27; and &#x27;target&#x27; arguments are required&quot;)
+                assert(function(){
+                    pavlov.util.extend(target);
+                }).throwsException(&quot;both &#x27;source&#x27; and &#x27;target&#x27; arguments are required&quot;)
+                assert(function(){
+                    pavlov.util.extend(target, null);
+                }).throwsException(&quot;both &#x27;source&#x27; and &#x27;target&#x27; arguments are required&quot;)
+            });
+            it(&quot;should copy all members of source to target&quot;, function(){
+                pavlov.util.extend(target, source);
+                assert(target.a).equals(1);
+                assert(target.c).equals(5);
+                assert(target.d).equals(6);
+            });
+        });
+    });
+
+    describe(&quot;specify()&quot;, function() {
+        it(&quot;should throw exception if name or fn params not passed&quot;, function(){
+            assert(function(){
+                pavlov.specify(function(){});
+            }).throwsException(&quot;both &#x27;name&#x27; and &#x27;fn&#x27; arguments are required&quot;);
+            assert(function(){
+                pavlov.specify(&quot;description&quot;);
+            }).throwsException(&quot;both &#x27;name&#x27; and &#x27;fn&#x27; arguments are required&quot;);
+        });
+
+        it(&quot;should run the spec lambda&quot;, function() {
+            &#x2F;&#x2F; implicitly true by virtue of having executed
+            assert.pass();
+        });
+
+        it(&quot;should call the adapter&#x27;s initiate() with the suite name&quot;, function(){
+            assert(capturedSuiteName).equals(&#x27;Pavlov Specifications&#x27;);
+        });
+
+        it(&quot;should set the document title to spec name + Pavlov + Adapter&#x27;&quot;, function() {
+            assert(document.title).isEqualTo(&quot;Pavlov Specifications - Pavlov - QUnit&quot;);
+        });
+
+        it(&quot;should run the resulting flattened pavlov tests&quot;, function() {
+            &#x2F;&#x2F; implicitly true by virtue of having executed
+            assert.pass();
+        });
+
+        it(&quot;should not pollute the global namespace&quot;, function() {
+            pavlov.util.each(&quot;describe,it,wait,before,after,given&quot;.split(&#x27;,&#x27;), function() {
+                assert(global[String(this)]).isUndefined();
+            });
+        });
+    });
+
+    describe(&quot;describe()&quot;, function() {
+        var variableDefinedInDescribe = &quot;y&quot;;
+        var beforeCalls = [];
+        var afterCalls = [];
+
+        var beforeCallCount = 0;
+        before(function() {
+            beforeCallCount++;
+            beforeCalls.push(&#x27;x&#x27;);
+        });
+
+        var afterCallCount = 0;
+        after(function() {
+            afterCallCount++;
+            afterCalls.push(&#x27;y&#x27;);
+        });
+
+        it(&quot;should throw exception if not passed a description and fn&quot;, function(){
+            assert(function(){
+                describe(&quot;some description&quot;);
+            }).throwsException(&quot;both &#x27;description&#x27; and &#x27;fn&#x27; arguments are required&quot;);
+            assert(function(){
+                describe(function(){});
+            }).throwsException(&quot;both &#x27;description&#x27; and &#x27;fn&#x27; arguments are required&quot;);
+        });
+
+        it(&quot;should throw exception when before() not passed an fn&quot;, function(){
+            assert(function(){
+                before();
+            }).throwsException(&quot;&#x27;fn&#x27; argument is required&quot;)
+        });
+
+        it(&quot;should throw exception when after() not passed an fn&quot;, function(){
+            assert(function(){
+                after();
+            }).throwsException(&quot;&#x27;fn&#x27; argument is required&quot;)
+        });
+
+        it(&quot;should execute lambda&quot;, function() {
+            &#x2F;&#x2F; implicitly true by virtue of this running
+            assert.pass();
+        });
+
+        it(&quot;should execute before() before each it()&quot;, function() {
+            assert(beforeCallCount).equals(5);
+            assert(afterCallCount).equals(4);
+        });
+
+        it(&quot;should execute after() after each it()&quot;, function() {
+            assert(beforeCallCount).equals(6);
+            assert(afterCallCount).equals(5);
+        });
+
+        describe(&quot;with a nested describe()&quot;, function() {
+            var variableDefinedInNestedDescribe = &quot;x&quot;;
+
+            before(function() {
+                beforeCalls.push(&#x27;a&#x27;);
+            });
+
+            after(function() {
+                afterCalls.push(&#x27;b&#x27;);
+            });
+
+            it(&quot;should execute all before()s from outside-in&quot;, function() {
+                assert(beforeCalls).contentsEqual([&#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;a&#x27;]);
+                assert(afterCalls).contentsEqual([&#x27;y&#x27;, &#x27;y&#x27;, &#x27;y&#x27;, &#x27;y&#x27;, &#x27;y&#x27;, &#x27;y&#x27;, &#x27;y&#x27;]);
+            });
+
+            it(&quot;should execute all after()s from inside-out&quot;, function() {
+                assert(beforeCalls).contentsEqual([&#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;, &#x27;a&#x27;, &#x27;x&#x27;, &#x27;a&#x27;]);
+                assert(afterCalls).contentsEqual([&#x27;y&#x27;, &#x27;y&#x27;, &#x27;y&#x27;, &#x27;y&#x27;, &#x27;y&#x27;, &#x27;y&#x27;, &#x27;y&#x27;, &#x27;b&#x27;, &#x27;y&#x27;]);
+            });
+
+            it(&quot;should have access to own describe scope&quot;, function() {
+                assert(variableDefinedInNestedDescribe).isDefined();
+            });
+
+            it(&quot;should have access to parent describe scope&quot;, function() {
+                assert(variableDefinedInDescribe).isDefined();
+            });
+        });
+
+        it(&quot;should have access to describe scope&quot;, function() {
+            assert(variableDefinedInDescribe).isDefined();
+        });
+    });
+
+    describe(&quot;it()&quot;, function() {
+        it(&quot;should throw exception if not passed at least a specification&quot;, function(){
+            assert(function(){
+                it();
+            }).throwsException(&quot;&#x27;specification&#x27; argument is required&quot;);
+        });
+
+        it(&quot;should generate and run a test&quot;, function() {
+            ok(true);  &#x2F;&#x2F; implicitly true by virtue of this running
+        });
+
+        describe(&quot;when not passed a test lambda&quot;, function(){
+
+            it(&quot;should generate a failing (todo) test when not passed a lambda&quot;, function(){
+                var originalIt = it;
+                var args;
+                try{
+                    &#x2F;&#x2F; mock up an it
+                    &#x2F;&#x2F; when passed single arg, let Pavlov do it&#x27;s job (to test it)
+                    &#x2F;&#x2F; when passed 2 args, intercept and capture the response to
+                    &#x2F;&#x2F; keep Pavlov from doing its job
+                    &#x2F;&#x2F; later, will verify the correct behavior happened with 1 arg.
+                    it = function() {
+                        if(arguments.length === 2) {
+                            args = makeArray(arguments);
+                        } else {
+                            originalIt.apply(this,arguments);
+                        }
+                    };
+
+                    &#x2F;&#x2F; run the method under test
+                    it(&quot;no lambda&quot;);
+
+                    var todoGeneratingFn = args[1];
+
+                    var originalFail = assert.fail;
+                    var failMessage = null;
+                    try
+                    {
+                        assert.fail = function(message) {
+                            failMessage = message;
+                        };
+                        todoGeneratingFn();
+                    } finally {
+                        assert.fail = originalFail;
+                    }
+
+                } finally {
+                    it = originalIt;
+                }
+                assert(args[0]).equals(&quot;no lambda&quot;);
+                assert(args.length).equals(2);
+                assert(failMessage).equals(&quot;Not Implemented&quot;);
+            });
+
+        });
+
+        describe(&quot;after a given()&quot;, function() {
+
+            it(&quot;should throw exception when given() not passed at least an arg&quot;, function(){
+                assert(function(){
+                    given();
+                }).throwsException(&quot;at least one argument is required&quot;);
+            });
+
+            var singleArgGivenCount = 0;
+
+            given(1, 2, 3).
+                it(&quot;should test for each of given()&#x27;s args when passed flat args&quot;, function(x) {
+                    assert(x).equals(singleArgGivenCount + 1);
+                    singleArgGivenCount++;
+            });
+
+            var multiArgGivenCount = 0;
+
+            given([1, 2, 3], [4, 5, 6], [7, 8, 9]).
+                it(&quot;should test for each of given()&#x27;s args when passed array arguments&quot;, function(x, y, z) {
+                    assert(x).equals(multiArgGivenCount * 3 + 1, &quot;some message&quot;);
+                    assert(y).equals(multiArgGivenCount * 3 + 2);
+                    assert(z).equals(multiArgGivenCount * 3 + 3);
+                    multiArgGivenCount++;
+            });
+
+            var arrayPassedMultiArgGivenCount = 0;
+
+            given([[1, 2, 3], [4, 5, 6], [7, 8, 9]]).
+                it(&quot;should test for each of given()&#x27;s args when passed array of array arguments&quot;, function(x, y, z) {
+                    assert(x).equals(arrayPassedMultiArgGivenCount * 3 + 1, &quot;some message&quot;);
+                    assert(y).equals(arrayPassedMultiArgGivenCount * 3 + 2);
+                    assert(z).equals(arrayPassedMultiArgGivenCount * 3 + 3);
+                    arrayPassedMultiArgGivenCount++;
+            });
+
+            given([1,1],[2,2],[3,3]).
+                it(&quot;should delegate arguments to async tests&quot;, async(function(a,b){
+                    assert(typeof a).isNotEqualTo(&quot;undefined&quot;);
+                    assert(typeof b).isNotEqualTo(&quot;undefined&quot;);
+                    assert(a).equals(b);
+                    resume();
+                }));
+        });
+
+        describe(&quot;with a wait()&quot;, function() {
+
+            it(&quot;should throw exception if not passed both fn and ms&quot;, function(){
+                assert(function(){
+                    wait();
+                }).throwsException(&quot;both &#x27;ms&#x27; and &#x27;fn&#x27; arguments are required&quot;)
+                assert(function(){
+                    wait(54);
+                }).throwsException(&quot;both &#x27;ms&#x27; and &#x27;fn&#x27; arguments are required&quot;)
+                assert(function(){
+                    wait(function(){});
+                }).throwsException(&quot;both &#x27;ms&#x27; and &#x27;fn&#x27; arguments are required&quot;)
+            });
+
+            it(&quot;should run adapter&#x27;s pause(), run a setTimeout() for duration, then execute lambda and run adapter&#x27;s resume()&quot;, function() {
+                var original = {
+                    pause: pavlov.adapter.pause,
+                    resume: pavlov.adapter.resume,
+                    setTimeout: global.setTimeout
+                };
+                var calls = [];
+                var setTimeoutMs = 0;
+                var waitLambdaCalled = false;
+
+                try{
+                    &#x2F;&#x2F; mock timing functions to capture their calls from wait()
+                    pavlov.adapter.pause = function() { calls.push(&#x27;pause&#x27;); };
+                    pavlov.adapter.resume = function() { calls.push(&#x27;resume&#x27;); };
+                    global.setTimeout = function(fn, ms) {
+                        calls.push(&#x27;settimeout&#x27;);
+                        setTimeoutMs = ms;
+                        fn();
+                    };
+
+                    &#x2F;&#x2F; call wait
+                    wait(40, function(){
+                        calls.push(&#x27;waitlambda&#x27;);
+                    });
+
+                } finally {
+                    &#x2F;&#x2F; undo mocking
+                    pavlov.adapter.pause = original.pause;
+                    pavlov.adapter.resume = original.resume;
+                    global.setTimeout = original.setTimeout;
+                }
+
+                &#x2F;&#x2F; check if calls to mocked fn&#x27;s occurred correctly
+                assert(calls).contentsEqual([&#x27;pause&#x27;,&#x27;settimeout&#x27;,&#x27;waitlambda&#x27;,&#x27;resume&#x27;]);
+                assert(setTimeoutMs).equals(40);
+            });
+
+        });
+
+        describe(&quot;with a pause()&quot;, function(){
+            it(&quot;should proxy adapter&#x27;s pause()&quot;, function(){
+                var originalPause = pavlov.adapter.pause;
+                var paused = false;
+                pavlov.adapter.pause = function() { paused = true; }
+                pause();
+                pavlov.adapter.pause = originalPause;
+                assert(paused).isTrue();
+            });
+        });
+
+        describe(&quot;with a resume()&quot;, function(){
+            it(&quot;should proxy adapter&#x27;s resume()&quot;, function(){
+                var originalResume = pavlov.adapter.resume;
+                var resumed = false;
+                pavlov.adapter.resume = function() { resumed = true; }
+                resume();
+                pavlov.adapter.resume = originalResume;
+                assert(resumed).isTrue();
+            });
+        });
+
+        describe(&quot;with an async()&quot;, function(){
+            it(&quot;should return a function which calls pause and then the original function&quot;, function(){
+                var calls = [];
+                var specImplementation = function() { calls.push(&#x27;spec&#x27;); };
+                var originalPause = pavlov.adapter.pause;
+                pavlov.adapter.pause = function(){ calls.push(&#x27;pause&#x27;); };
+
+                var asyncSpecImplementation = async(specImplementation);
+                asyncSpecImplementation();
+
+                pavlov.adapter.pause = originalPause;
+                assert(calls).contentsEqual([&#x27;pause&#x27;,&#x27;spec&#x27;]);
+            });
+        });
+    });
+
+    describe(&quot;assertions&quot;, function() {
+
+        describe(&quot;equals()&quot;, function() {
+
+            it(&quot;should pass true to adapter&#x27;s assert when expected == actual&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(1).equals(true, &quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;some message&quot;]);
+            });
+
+        });
+
+        describe(&quot;isEqualTo()&quot;, function() {
+
+            it(&quot;should pass true to adapter&#x27;s assert when expected == actual&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(1).isEqualTo(true, &quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;some message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when expected != actual&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(4).isEqualTo(7, &quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;some message&quot;]);
+            });
+        });
+
+        describe(&quot;isNotEqualTo()&quot;, function(){
+
+            it(&quot;should pass true to adapter&#x27;s assert when actual != expected&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(4).isNotEqualTo(2, &quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;some message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when actual == expected&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(2).isNotEqualTo(2, &quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;some message&quot;]);
+            });
+
+        });
+
+        describe(&quot;isStrictlyEqualTo()&quot;, function() {
+
+            it(&quot;should pass true to adapter&#x27;s assert when expected === actual&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(&quot;abc&quot;).isStrictlyEqualTo(&quot;abc&quot;, &quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;some message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when expected !== actual&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(0).isStrictlyEqualTo(false, &quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;some message&quot;]);
+            });
+        });
+
+        describe(&quot;isNotStrictlyEqualTo()&quot;, function(){
+
+            it(&quot;should pass true to adapter&#x27;s assert when actual !== expected&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(1).isNotStrictlyEqualTo(true, &quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;some message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when actual === expected&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(5).isNotStrictlyEqualTo(5, &quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;some message&quot;]);
+            });
+
+        });
+
+        describe(&quot;isTrue()&quot;, function() {
+
+            it(&quot;should pass true to adapter&#x27;s assert when expr is true&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(true).isTrue(&quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;some message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when expr is false&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(false).isTrue(&quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;some message&quot;]);
+            });
+
+        });
+
+        describe(&quot;isFalse()&quot;, function(){
+
+            it(&quot;should pass true to adapter&#x27;s assert when expr is false&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(false).isFalse(&quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;some message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when expr is true&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(true).isFalse(&quot;some message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;some message&quot;]);
+            });
+        });
+
+        describe(&quot;isNull()&quot;, function() {
+
+            it(&quot;should pass true to adapter&#x27;s assert when actual === null&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(null).isNull(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when actual !== null&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(0).isNull(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;message&quot;]);
+            });
+
+        });
+
+        describe(&quot;isNotNull()&quot;, function(){
+
+            it(&quot;should pass true to adapter&#x27;s assert when actual !== null&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(0).isNotNull(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when actual === null&quot;, function() {
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(null).isNotNull(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;message&quot;]);
+            });
+
+        });
+
+        describe(&quot;isDefined()&quot;, function() {
+
+            it(&quot;should pass true to adapter&#x27;s assert when typeof(argument) !== &#x27;undefined&#x27;&quot;, function() {
+                var x = &quot;something&quot;;
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(x).isDefined(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when typeof(argument) === &#x27;undefined&#x27;&quot;, function() {
+                var x;
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(x).isDefined(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;message&quot;]);
+            });
+
+        });
+
+        describe(&quot;isUndefined()&quot;, function(){
+
+            it(&quot;should pass true to adapter&#x27;s assert when typeof(argument) === &#x27;undefined&#x27;&quot;, function() {
+                var x;
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(x).isUndefined(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when typeof(argument) !== &#x27;undefined&#x27;&quot;, function() {
+                var x = 1;
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(x).isUndefined(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;message&quot;]);
+            });
+
+        });
+
+
+        describe(&quot;pass()&quot;, function(){
+
+            it(&quot;should pass true to adapter&#x27;s assert&quot;, function(){
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert().pass(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;message&quot;]);
+            });
+
+            it(&quot;should also be called from assert.pass()&quot;, function(){
+
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert.pass(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;message&quot;]);
+
+            });
+
+        });
+
+        describe(&quot;fail()&quot;, function(){
+
+            it(&quot;should pass false to adapter&#x27;s assert&quot;, function(){
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert().fail(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;message&quot;]);
+            });
+
+            it(&quot;should also be called from assert.false()&quot;, function(){
+
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert.fail(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;message&quot;]);
+
+            });
+
+        });
+
+        describe(&quot;isFunction()&quot;, function(){
+
+            it(&quot;shold pass false to adapter&#x27;s assert when not a funciton&quot;, function(){
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert({}).isFunction(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;message&quot;]);
+            });
+
+            it(&quot;should pass true to adapter&#x27;s assert if a function is passed&quot;, function(){
+
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(function(){}).isFunction(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;message&quot;]);
+
+            });
+
+        });
+
+        describe(&quot;isNotFunction()&quot;, function(){
+
+            it(&quot;shold pass true to when not a funciton&quot;, function(){
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert({}).isNotFunction(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;message&quot;]);
+            });
+
+            it(&quot;should return false if a function is passed in&quot;, function(){
+
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(function(){}).isNotFunction(&quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;message&quot;]);
+
+            });
+
+        });
+
+        describe(&quot;throwsException()&quot;, function(){
+
+            it(&quot;should pass true to adapter&#x27;s assert when function throws exception&quot;, function(){
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(function(){
+                        &#x2F;&#x2F; should throw undefined exceptions
+                        var totalPrice = unitPrice * quantity;
+                    }).throwsException();
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&#x27;asserting function() throws exception&#x27;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when function does not throw exception&quot;, function(){
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(function(){
+                        var unitPrice = 10;
+                        var quantity = 4;
+                        var totalPrice = unitPrice * quantity;
+                    }).throwsException();
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&#x27;asserting function() throws exception&#x27;]);
+            });
+
+            it(&quot;should pass true to adapter&#x27;s assert when function throws exception with expected description&quot;, function(){
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(function(){
+                        throw(&quot;expected description&quot;);
+                    }).throwsException(&quot;expected description&quot;, &quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([true,&quot;message&quot;]);
+            });
+
+            it(&quot;should pass false to adapter&#x27;s assert when function throws exception with unexpected description&quot;, function(){
+                var passedArgs = mock(pavlov.adapter, &#x27;assert&#x27;, function(){
+                    &#x2F;&#x2F; run spec assertion while underlying qunit assertion is mocked
+                    assert(function(){
+                        throw(&quot;some other error description&quot;);
+                    }).throwsException(&quot;expected description&quot;, &quot;message&quot;);
+                });
+
+                &#x2F;&#x2F; verify correct arguments would have been passed to qunit
+                assert(passedArgs).contentsEqual([false,&quot;message&quot;]);
+            });
+        });
+
+        describe(&quot;custom assertions&quot;, function(){
+
+            it(&quot;should be able to be added via pavlov.extendAssertions with 3 arg asserts&quot;, function(){
+                var gtArgs, ltArgs;
+                pavlov.extendAssertions({
+                    isGreaterThan: function(actual, expected, message) {
+                        gtArgs = makeArray(arguments);
+                    },
+                    isLessThan: function(actual, expected, message) {
+                        ltArgs = makeArray(arguments);
+                    }
+                });
+
+                assert(4).isGreaterThan(2,&quot;some message&quot;);
+                assert(2).isLessThan(4,&quot;some message&quot;);
+
+                assert(gtArgs).contentsEqual([4,2,&quot;some message&quot;]);
+                assert(ltArgs).contentsEqual([2,4,&quot;some message&quot;]);
+            });
+
+            it(&quot;should be able to be added via pavlov.extendAssertions with 2 arg asserts&quot;, function(){
+                var purpleArgs, yellowArgs;
+                pavlov.extendAssertions({
+                    isPurple: function(actual, message) {
+                        purpleArgs = makeArray(arguments);
+                    },
+                    isYellow: function(actual, message) {
+                        yellowArgs = makeArray(arguments);
+                    }
+                });
+
+                assert(4).isPurple(&quot;some message&quot;);
+                assert(2).isYellow(&quot;some message&quot;);
+
+                assert(purpleArgs).contentsEqual([4,&quot;some message&quot;]);
+                assert(yellowArgs).contentsEqual([2,&quot;some message&quot;]);
+            });
+
+        });
+
+        describe(&quot;that have provided messages&quot;, function(){
+            it(&quot;should display those messages&quot;, function(){
+                var gtArgs, ltArgs;
+                pavlov.extendAssertions({
+                    isGreaterThan: function(actual, expected, message) {
+                        gtArgs = makeArray(arguments);
+                    }
+                });
+                assert(4).isGreaterThan(2,&quot;some message&quot;);
+                assert(gtArgs).contentsEqual([4,2,&quot;some message&quot;]);
+            });
+        });
+
+        describe(&quot;that do not have provided messages&quot;, function(){
+            it(&quot;should generate messages using letter-cased assertion name and serialized expected&#x2F;actuals&quot;, function(){
+                var gtArgs, ltArgs;
+                pavlov.extendAssertions({
+                    isGreaterThan: function(actual, expected, message) {
+                        gtArgs = makeArray(arguments);
+                    }
+                });
+                assert(4).isGreaterThan(2);
+                assert(gtArgs).contentsEqual([4,2,&quot;asserting 4 is greater than 2&quot;]);
+            });
+
+            describe(&quot;when the values are arrays&quot;, function(){
+                it(&quot;should properly serialize&quot;, function(){
+                    var gtArgs, ltArgs;
+                    pavlov.extendAssertions({
+                        hasLengthOf: function(actual, expected, message) {
+                            gtArgs = makeArray(arguments);
+                        }
+                    });
+                    assert([&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;]).hasLengthOf(3);
+                    assert(gtArgs).contentsEqual([[&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;],3,&quot;asserting [a,b,c] has length of 3&quot;]);
+                });
+            });
+
+            describe(&quot;when the values are functions&quot;, function(){
+                it(&quot;should properly serialize&quot;, function(){
+                    var gtArgs, ltArgs;
+                    pavlov.extendAssertions({
+                        isAFunction: function(actual, message) {
+                            gtArgs = makeArray(arguments);
+                        }
+                    });
+                    var helloFn = function() { alert(&#x27;hello&#x27;); };
+                    assert(helloFn).isAFunction();
+                    assert(gtArgs).contentsEqual([helloFn,&quot;asserting function() is a function&quot;]);
+                });
+            });
+
+            describe(&quot;when the values are strings&quot;, function(){
+                it(&quot;should properly serialize&quot;, function(){
+                    var gtArgs, ltArgs;
+                    pavlov.extendAssertions({
+                        isAStringWithLengthOf: function(actual, expected, message) {
+                            gtArgs = makeArray(arguments);
+                        }
+                    });
+                    assert(&quot;test string&quot;).isAStringWithLengthOf(11);
+                    assert(gtArgs).contentsEqual([&quot;test string&quot;,11,&quot;asserting \&quot;test string\&quot; is a string with length of 11&quot;]);
+                });
+            });
+
+            describe(&quot;when the values are primitives&quot;, function(){
+                given([4,5],[false,true],[3.14,2.718])
+                    .it(&quot;should properly serialize&quot;, function(a,b){
+                        var gtArgs, ltArgs;
+                        pavlov.extendAssertions({
+                            isNotTheSameLiteralValueAs: function(actual, expected, message) {
+                                gtArgs = makeArray(arguments);
+                            }
+                        });
+                        assert(a).isNotTheSameLiteralValueAs(b);
+                        assert(gtArgs).contentsEqual([a,b,(&quot;asserting &quot; + a.toString() + &quot; is not the same literal value as &quot; + b.toString())]);
+                    });
+            });
+        });
+    });
+
+    describe(&quot;QUnit adapter&quot;, function(){
+        describe(&quot;specify()&quot;, function() {
+            it(&quot;should be equivalent to pavlov.specify for legacy support&quot;, function(){
+                assert(QUnit.specify).isStrictlyEqualTo(pavlov.specify);
+            });
+            it(&quot;should contain the same methods as pavlov.specify for legacy support&quot;, function(){
+                var containsAllMethods = true;
+                pavlov.util.each(pavlov.specify, function(name, fn) {
+                    containsAllMethods = containsAllMethods &amp;&amp; (pavlov.specify[name] === QUnit.specify[name]);
+                });
+                assert(containsAllMethods).isTrue();
+            });
+            it(&quot;should be able to run alongside standard QUnit modules and tests&quot;, function() {
+                assert(firstStandardQUnitTestRan).isTrue();
+            });
+        });
+        describe(&quot;initiate&quot;, function(){
+            it(&quot;should update heading to suite name&quot;, function(){
+                var h1s = document.getElementsByTagName(&#x27;h1&#x27;);
+                if(h1s &amp;&amp; h1s.length &gt; 0) {
+                    assert(h1s[0].innerHTML).equals(&#x27;Pavlov Specifications&#x27;);
+                }
+            });
+        });
+        describe(&quot;assert&quot;, function(){
+            it(&quot;should proxy QUnit&#x27;s ok()&quot;, function(){
+                var args = mock(global, &#x27;ok&#x27;, function(expression, message){
+                    pavlov.adapter.assert(true, &quot;some message&quot;);
+                });
+                assert(args).contentsEqual([true, &#x27;some message&#x27;]);
+            });
+        });
+        describe(&quot;pause&quot;, function(){
+            it(&quot;should proxy QUnit&#x27;s stop()&quot;, function(){
+                var stopped = false;
+                mock(global, &#x27;stop&#x27;, function(){
+                    stopped = true;
+                    pavlov.adapter.pause();
+                });
+                assert(stopped).isTrue();
+            });
+        });
+        describe(&quot;resume&quot;, function(){
+            it(&quot;should proxy QUnit&#x27;s start()&quot;, function(){
+                var started = false;
+                mock(global, &#x27;start&#x27;, function(){
+                    started = true;
+                    pavlov.adapter.resume();
+                });
+                assert(started).isTrue();
+            });
+        });
+        describe(&quot;assertion extensions&quot;, function(){
+            describe(&quot;isSameAs&quot;, function(){
+                it(&quot;should proxy QUnit&#x27;s deepEqual()&quot;, function(){
+                    var args = mock(global, &#x27;deepEqual&#x27;, function(actual, expected, message){
+                        assert(&#x27;something&#x27;).isSameAs(&#x27;somethingElse&#x27;, &quot;some message&quot;);
+                    });
+                    assert(args).contentsEqual([&#x27;something&#x27;,&#x27;somethingElse&#x27;,&#x27;some message&#x27;]);
+                });
+            });
+            describe(&quot;isNotSameAs&quot;, function(){
+                it(&quot;should proxy QUnit&#x27;s notDeepEqual()&quot;, function(){
+                    var args = mock(global, &#x27;notDeepEqual&#x27;, function(actual, expected, message){
+                        assert(&#x27;something&#x27;).isNotSameAs(&#x27;somethingElse&#x27;, &quot;some message&quot;);
+                    });
+                    assert(args).contentsEqual([&#x27;something&#x27;,&#x27;somethingElse&#x27;,&#x27;some message&#x27;]);
+                });
+            });
+        });
+    });
+
+    describe(&quot;api&quot;, function(){
+        it(&quot;should expose &#x27;describe&#x27;&quot;, function(){
+            assert(pavlov.api.describe).isSameAs(describe);
+        });
+        it(&quot;should expose &#x27;before&#x27;&quot;, function(){
+            assert(pavlov.api.before).isSameAs(before);
+        });
+        it(&quot;should expose &#x27;after&#x27;&quot;, function(){
+            assert(pavlov.api.after).isSameAs(after);
+        });
+        it(&quot;should expose &#x27;it&#x27;&quot;, function(){
+            assert(pavlov.api.it).isSameAs(it);
+        });
+        it(&quot;should expose &#x27;async&#x27;&quot;, function(){
+            assert(pavlov.api.async).isSameAs(async);
+        });
+        it(&quot;should expose &#x27;given&#x27;&quot;, function(){
+            assert(pavlov.api.given).isSameAs(given);
+        });
+        it(&quot;should expose &#x27;assert&#x27;&quot;, function(){
+            assert(pavlov.api.assert).isSameAs(assert);
+        });
+        it(&quot;should expose &#x27;wait&#x27;&quot;, function(){
+            assert(pavlov.api.wait).isSameAs(wait);
+        });
+        it(&quot;should expose &#x27;pause&#x27;&quot;, function(){
+            assert(pavlov.api.pause).isSameAs(pause);
+        });
+        it(&quot;should expose &#x27;resume&#x27;&quot;, function(){
+            assert(pavlov.api.resume).isSameAs(resume);
+        });
+    });
+});
+
+module(&quot;Second Standard QUnit module&quot;);
+var secondStandardQUnitTestRan = false;
+test(&quot;should be able to run after Pavlov&#x27;s QUnit Adapter&quot;, function() {
+    expect(1);
+    secondStandardQUnitTestRan = true;
+    ok(secondStandardQUnitTestRan);
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

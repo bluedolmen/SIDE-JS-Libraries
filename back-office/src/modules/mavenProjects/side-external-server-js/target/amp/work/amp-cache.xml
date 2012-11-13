@@ -1,0 +1,28 @@
+<webapp-structure>
+  <registeredFiles>
+    <entry>
+      <string>currentBuild</string>
+      <path-set>
+        <pathsSet class="linked-hash-set">
+          <string>lib/side-external-server-js-1.0.jar</string>
+          <string>config/alfresco/module/SIDE_server-side-js-SIDE/context/service-context.xml</string>
+          <string>config/alfresco/module/SIDE_server-side-js-SIDE/log4j.properties</string>
+          <string>config/alfresco/module/SIDE_server-side-js-SIDE/module-context.xml</string>
+          <string>config/alfresco/webscripts/extension/js/external/csvjson.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/deepEqual.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/env.rhino.1.2.13.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/FME.Folder.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/google/base.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/json.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/log4javascript-rhino.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/log4javascript.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/pavlov.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/qunit-cli.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/qunit.js</string>
+          <string>config/alfresco/webscripts/extension/js/external/README-licenses.txt</string>
+          <string>module.properties</string>
+        </pathsSet>
+      </path-set>
+    </entry>
+  </registeredFiles>
+</webapp-structure>

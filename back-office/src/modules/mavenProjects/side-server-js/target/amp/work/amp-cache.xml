@@ -1,0 +1,39 @@
+<webapp-structure>
+  <registeredFiles>
+    <entry>
+      <string>currentBuild</string>
+      <path-set>
+        <pathsSet class="linked-hash-set">
+          <string>lib/side-server-js-1.0.jar</string>
+          <string>config/alfresco/module/SIDE_side-server-js/context/service-context.xml</string>
+          <string>config/alfresco/module/SIDE_side-server-js/log4j.properties</string>
+          <string>config/alfresco/module/SIDE_side-server-js/module-context.xml</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Admin/Clean.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/DataLists/Import.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Helper/DataLists-Spec.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Helper/DataLists.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Helper/Folder-Spec.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Helper/Folder-test.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Helper/Folder.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Helper/Search-Spec-2.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Helper/Search-Spec.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Helper/Search.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Helper/Util-Spec.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/Alfresco/Helper/Util.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/base.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/tests/NoSuchMethod.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/tests/run-tests.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/tests/test-bdd-cli.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/tests/test-pavlov-example.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/tests/test-pavlov.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/tests/test-qunit.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/util/Logger.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/YaMma/AutoUpdate-Spec.js</string>
+          <string>config/alfresco/webscripts/extension/js/SIDE/YaMma/AutoUpdate.js</string>
+          <string>web/licenses/README-licenses.txt</string>
+          <string>module.properties</string>
+        </pathsSet>
+      </path-set>
+    </entry>
+  </registeredFiles>
+</webapp-structure>
