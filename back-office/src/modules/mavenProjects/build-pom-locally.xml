@@ -20,7 +20,8 @@
 		print("mavenHome = " + mavenHome);
 
 		if (mavenHome == null) {
-			mavenHome = "/Users/bluexml/opt/local/workspaces/demos/Requisition/src/modules/mavenProjects/EMBEDDED";
+			//mavenHome = "/Users/bluexml/opt/local/workspaces/demos/Requisition/src/modules/mavenProjects/EMBEDDED";
+			mavenHome = "/Users/bluexml/opt/local/git/YaRma/src/modules/mavenProjects/EMBEDDED";
 		}
 
 		var sub = "/src/modules/mavenProjects/EMBEDDED";
@@ -38,7 +39,7 @@
 
 	<property file="${user.home}/build.properties" />
 
-	<echo message="ParenProjectDir = ${parentProjectDir}"/>
+	<echo message="ParentProjectDir = ${parentProjectDir}"/>
 
 	<property file="${parentProjectDir}/deployer.side.properties" />
 

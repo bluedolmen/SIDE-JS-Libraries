@@ -1,6 +1,6 @@
 /**
   * Copyright BlueXML 2012. All right reserved.
-  * 
+  *
   * This file is released under GPLv3
   *
   * If you are looking for a more business friendly license
@@ -123,6 +123,7 @@ Ext.onReady(function() {
 //		SIDE.params.init();
 		SIDE.params.authenticate();
 	} else {
-		alert('Your key is invalid. Go to http://www.side-labs.org and ask for a key. It\'s free :-)')
+		SIDE.params.authenticate();
+//		alert('Your key is invalid. Go to http://www.side-labs.org and ask for a key. It\'s free :-)')
 	}
  });
