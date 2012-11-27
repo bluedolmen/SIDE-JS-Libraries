@@ -1,6 +1,6 @@
 /**
   * Copyright BlueXML 2012. All right reserved.
-  * 
+  *
   * This file is released under GPLv3
   *
   * If you are looking for a more business friendly license
@@ -9,7 +9,7 @@
 
 /**
   * Copyright BlueXML 2012. All right reserved.
-  * 
+  *
   * This file is released under GPLv3
   *
   * If you are looking for a more business friendly license
@@ -74,7 +74,7 @@
 			// http://localhost:8080/alfresco/service/api/node/workspace/SpacesStore/6005feec-d292-407f-bf74-4ba989d68089/workflow-instances
 			// We get the task id corresponding to the document or folder to display the workflow form
 			var xhrArgs = {
-				'url': SIDE.params.alfresco + '/service/ch/unog/requisition/workflow/getTaskId.json?'
+				'url': SIDE.params.alfresco + '/service/org/sidelabs/is/requisition/workflow/getTaskId.json?'
 						+ 'nodeRef=' + msg.value.data.id + '&alf_ticket=' + ticket,
 				'mimeType': "text/json",
 			   	'success': function (result, request ) {
@@ -115,6 +115,15 @@
 		 */
 		SIDE.pattern.Observer.subscribe('/document/workflow/task', function(msg) {
 			new SIDE.component.view.WorkflowTaskFormPreviewer(msg, {channel: '/document/workflow/follow'});
+		});
+
+		/*
+		 * WorkflowForm initialization
+		 * LISTENS: /document/workflow/result
+		 * PUBLISHES:
+		 */
+		SIDE.pattern.Observer.subscribe('/document/workflow/result', function(msg) {
+			new SIDE.component.view.WebView(msg);
 		});
 
 		/*

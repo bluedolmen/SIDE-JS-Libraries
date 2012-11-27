@@ -1,6 +1,6 @@
 /**
   * Copyright BlueXML 2012. All right reserved.
-  * 
+  *
   * This file is released under GPLv3
   *
   * If you are looking for a more business friendly license
@@ -9,7 +9,7 @@
 
 /**
   * Copyright BlueXML 2012. All right reserved.
-  * 
+  *
   * This file is released under GPLv3
   *
   * If you are looking for a more business friendly license
@@ -33,7 +33,7 @@ Ext.onReady(function() {
 	    //'contentEl': 'start-div'  // pull existing content from the page
 		//'html': 	'<div id="start-div"><h1>Coucou</h1></div>'
 		autoLoad : {
-			'url': 	'proxy.jsp?url=http://localhost:8080/share/side-labs/help/index.html',
+			'url': 	'proxy.jsp?url=http://localhost:8080/share/side-application/help/index.html',
 			'scripts': true
 //			'url': 	'http://conf.unog.ch/confluence/display/its/Requisitions.UserManual',
         }
@@ -126,7 +126,7 @@ Ext.onReady(function() {
 			         {
 			        		'region': 'center'
 //			            		,'title': 'Mails and Emails'
-			        		,'title': 'Procurement Requisitions'
+			        		,'title': 'Requisitions'
 			    			,'header': true
 			        		//,'height': 200
 			    			,'layout': 'fit'
