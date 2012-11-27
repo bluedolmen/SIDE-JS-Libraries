@@ -36,7 +36,7 @@ SIDE.component.view.WorkflowTaskFormPreviewer = function(record) {
 	    'title': 	n.prop_cmis_name || 'Fichier PDF',
 	    'header':	false,
 	    'id': 		'workflowtaskformpanel-' + n.id,
-	    'renderTo':	'workflow-task',
+	    'applyTo':	'workflow-task',
 	    'layout': 	'fit',
 	    'height': 	500,
 	    'items': 	[formPanel]
