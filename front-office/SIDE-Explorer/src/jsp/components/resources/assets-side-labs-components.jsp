@@ -5,6 +5,7 @@
 	<script src="/cloud/components/side-labs/SIDE/component/view/Previewer.js"></script>
 	<script src="/cloud/components/side-labs/SIDE/component/view/ContentPreviewer.js"></script>
 	<script src="/cloud/components/side-labs/SIDE/component/view/FormPreviewer.js"></script>
+	<script src="/cloud/components/side-labs/SIDE/component/view/WebView.js"></script>
 	<script src="/cloud/components/side-labs/SIDE/component/view/WorkflowTaskFormPreviewer.js"></script>
 
 	<script src="/cloud/components/side-labs/SIDE/component/view/MainView.js"></script>
