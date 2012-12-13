@@ -38,5 +38,13 @@ SIDE.component.view.WebView = function(msg) {
 	    'items': 	[formPanel]
     }
 
+	// Redundant code in WorkflowTaskFormPreviewer
+	if (dojo.byId("workflow-task") != null) {
+		var node = dojo.byId("workflow-task");
+		while (node.hasChildNodes()) {
+			node.removeChild(node.lastChild);
+		}
+	}
+
     var extension = new Ext.Panel(config);
 };

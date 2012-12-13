@@ -42,6 +42,14 @@ SIDE.component.view.WorkflowTaskFormPreviewer = function(record) {
 	    'items': 	[formPanel]
     }
 
+	// Redundant code in WebView
+	if (dojo.byId("workflow-task") != null) {
+		var node = dojo.byId("workflow-task");
+		while (node.hasChildNodes()) {
+			node.removeChild(node.lastChild);
+		}
+	}
+
     var extension = new Ext.Panel(config);
 
 //    Ext.getCmp('tab-panel').add(extension);
