@@ -1,0 +1,8 @@
+#Wed Nov 28 06:45:07 CET 2012
+WARNING=DO NOT MODIFY THIS FILE IF YOU DON'T UNDERSTAND
+defaultDestination=/Users/bluexml/opt/local/alfresco/alfresco-community-4.0.d-requisition/tomcat/webapps/side-application
+defaultVariables=
+eclipse.preferences.version=1
+includeTeamPrivateFiles=false
+map|0=src/main/webapp|,|,|,|,
+useCurrentDateForDestinationFiles=false
