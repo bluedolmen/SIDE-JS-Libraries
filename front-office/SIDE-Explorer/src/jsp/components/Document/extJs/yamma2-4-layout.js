@@ -93,12 +93,11 @@ Ext.onReady(function() {
 			'region':		'north'
 			//,'id': '		component'
 			,'html': 		'<div id="north-header">'
-							+ '<div id="side-app-requisition">Procurement Requisition</div>'
-							+ '<div id="side-app-leave">Leave Request</div>'
+							+ '<div id="side-app-requisition">Yet Another Requisition Application Management</div>'
 							+ '</div>'
 			,'height':		30
 			,'border':		false
-			,'bodyStyle':	'background-color:#f8f8f8;'
+			,'bodyStyle':	'background-color:#cfcfcf;'
 			,'title':		'North'
 			,'header':		false
 			,'collapsible':	true

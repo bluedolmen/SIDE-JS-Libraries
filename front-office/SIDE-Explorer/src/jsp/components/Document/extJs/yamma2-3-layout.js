@@ -1,6 +1,6 @@
 /**
   * Copyright BlueXML 2012. All right reserved.
-  * 
+  *
   * This file is released under GPLv3
   *
   * If you are looking for a more business friendly license
@@ -9,7 +9,7 @@
 
 /**
   * Copyright BlueXML 2012. All right reserved.
-  * 
+  *
   * This file is released under GPLv3
   *
   * If you are looking for a more business friendly license
@@ -102,7 +102,7 @@ Ext.onReady(function() {
 		west: {
 			'region':		'west'
 			,'id': 			'forrest-panels'
-			,'width': 		'25%'
+			,'width': 		'250px'
 			,'border':		false
 			,'autoScroll':	true
 			,'title':		'Menu'
@@ -155,7 +155,7 @@ Ext.onReady(function() {
     		,'layout': 'fit'
     		,'title': 'Fichiers'
 			,'header': false
-            ,'width': '40%'
+            ,'width': '250px'
         	,'split': true
         	,'collapsible':	true
         	,'collapseMode':'mini'
