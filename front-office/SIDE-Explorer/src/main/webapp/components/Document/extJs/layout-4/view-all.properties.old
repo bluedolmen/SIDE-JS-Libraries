@@ -1,0 +1,158 @@
+var apiWebservice = "/alfresco/service/api/metadata/node/workspace/SpacesStore/";
+//var clazz = "org_sidelabs_is_hcm_absencemanagement_GenericDocument_";
+var clazz = "_";
+var editor = new Ext.ux.grid.RowEditor({
+    'saveText': 'Update',
+    'listeners': {
+		'afteredit': function(data) {
+			var row = data.record.data;
+        	var _params = {
+        		properties: {
+					"_reference": row._reference,
+					"_name": row._name,
+					"_typeOfDocument": row._typeOfDocument,
+					"_latitude": row._latitude,
+					"_longitude": row._longitude,
+					"size": row._size
+			}};
+			Ext.Ajax.request({
+//				url: apiWebservice + data.record.id + '?alf_ticket=' + _TICKET,
+				'method': 'POST',
+				'headers': {
+					'Content-Type': 'application/json; charset=UTF-8'
+				},
+				'params': Ext.encode(_params)
+			});
+       	}
+	}
+});
+
+var Static = {
+	states : [
+        ['Picture', 'Picture'],
+        ['Text', 'Textual Document'],
+        ['Video', 'Video']
+	]
+};
+
+var combo = new Ext.form.ComboBox({
+	'typeAhead': true,
+	'triggerAction': 'all',
+	'lazyRender': true,
+	'editable': false,
+	'mode': 'local',
+    'emptyText':'Select a value...',
+	'store': new Ext.data.ArrayStore({
+	    'id': 0,
+	    'fields': [
+	        'id',
+	        'displayText'
+	    ],
+	    'data': Static.states
+	}),
+	'valueField': 'id',
+	'displayField': 'displayText'
+});
+
+var groupField = 'name';
+
+var groupingView = new Ext.grid.GroupingView({
+        'forceFit':true,
+        'groupTextTpl': '{text} ({[values.rs.length]} {[values.rs.length > 1 ? "Items" : "Item"]})'
+    });
+
+var fbar = ['->', {
+    'text':'Clear Grouping',
+    'iconCls': 'icon-clear-group'
+//    'handler' : function() { store.clearGrouping(); }
+}]
+
+var viewConfig = {
+    'forceFit': true,
+    'enableRowBody': true,
+    'showPreview': true,
+    'getRowClass': function(record, rowIndex, p, store){
+        if(this['showPreview']){
+            p.body = '<p>' + record.data['com_sidelabs_is_operational_yamma_Titleable_title'] + '</p>';
+            return 'x-grid3-row-expanded';
+        }
+        return 'x-grid3-row-collapsed';
+    }
+}
+
+// var bbar = new Ext.PagingToolbar({
+var bbar = {
+    'pageSize': 25,
+//    'store': store,
+    'displayInfo': true,
+    'displayMsg': 'Displaying topics {0} - {1} of {2}',
+    'emptyMsg': "No topics to display",
+    'items':[
+        '-', {
+        'pressed': true,
+        'enableToggle': true,
+        'text': 'Show Preview',
+        'cls': 'x-btn-text-icon details'
+/*
+        'toggleHandler': function(btn, pressed) {
+            var view = component.grid.getView();
+            view['showPreview'] = pressed;
+            view.refresh();
+        }
+*/
+    }]
+};
+//});
+
+
+var Renderer = {}
+Renderer.handle = function(value, id, r) {
+	return value;
+//	return('<div class="' + id.id + '"><a href="#" onClick="view.publish(\'/side-win/size\', \'' + value + '\')">' + value + '</a></div>');
+}
+
+// Editing
+//var editor = {};
+var plugins = [editor];
+
+var colConfig = [{"id":"id","sortable":true,"width":160,"dataIndex":"id","groupable":false,"header":"Identifier","hidden":true},{"id":"com_sidelabs_is_operational_yamma_Assignable_responsible","sortable":true,"width":105,"dataIndex":"com_sidelabs_is_operational_yamma_Assignable_responsible","header":"Responsible"},{"id":"com_sidelabs_is_operational_yamma_Assignable_confidentiality","sortable":true,"width":105,"dataIndex":"com_sidelabs_is_operational_yamma_Assignable_confidentiality","header":"Confidentiality"},{"id":"com_sidelabs_is_operational_yamma_Event_dateTimeForPerson","sortable":true,"width":45,"dataIndex":"com_sidelabs_is_operational_yamma_Event_dateTimeForPerson","header":"DateTimeForPerson","hidden":true},{"id":"com_sidelabs_is_operational_yamma_Event_dateTimeInService","sortable":true,"width":52,"dataIndex":"com_sidelabs_is_operational_yamma_Event_dateTimeInService","header":"DateTimeInService","hidden":true},{"id":"com_sidelabs_is_operational_yamma_Document_digitizationDate","sortable":true,"width":63,"dataIndex":"com_sidelabs_is_operational_yamma_Document_digitizationDate","header":"DigitizationDate","hidden":true},{"id":"com_sidelabs_is_operational_yamma_Event_eventType","sortable":true,"width":105,"dataIndex":"com_sidelabs_is_operational_yamma_Event_eventType","header":"EventType"},{"id":"com_sidelabs_is_operational_yamma_Titleable_title","sortable":true,"width":79,"dataIndex":"com_sidelabs_is_operational_yamma_Titleable_title","header":"Title","hidden":true}];
+var view = {
+	'id': 'side-win',
+	'type': 'grid',
+	'text': 'Generic Document List View',
+    'iconCls': 'icon-side-explorer',
+    'title': 'Side Explorer Window',
+    'url': '',
+    'component': '', 					// is initialized later. May be removed here?
+//    'height': 500,
+	'height': 200
+
+    'autoHeight': true,
+//    'width': "100%", 					// or "100%"
+//	'autoWidth': true,
+    'fields': '',
+    'columns': colConfig,
+    'resizable': true,
+    'columnLines': true,
+    'publish': function(channel, value) {
+    	SIDE.pattern.Observer.publish(channel, [{'value': value}]);
+    },
+
+	// Grouping
+	'enableGrouping': true,
+    'view': groupingView,
+    'fbar': fbar,
+    'reader': '',
+//    'groupField: groupField,
+    'groupField': '',
+
+    // Paging
+	'enablePaging': true,
+    'viewConfig': viewConfig,
+    'bbar': bbar,
+
+	// Editor
+    'plugins': plugins
+//    selModel         : new Ext.grid.RowSelectionModel({singleSelect : true})
+}
+

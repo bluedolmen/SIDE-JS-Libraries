@@ -1,0 +1,52 @@
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+
+	<script type="text/javascript">
+	
+		var doc = $(document);
+
+		var contentPortlet = function(event, message) {
+			$('#content').html('Content ' + message);
+		}
+
+		var metadataPortlet = function(event, message) {
+			$('#metadata').html('Metadata ' + message);
+		}
+
+		doc.bind('info', contentPortlet);
+		doc.bind('info', metadataPortlet);
+
+		function OldWay() {
+		   var content = document.getElementById('content');
+		   var metadata = document.getElementById('metadata');
+		
+		   content.innerHTML = "Content View Updated Through The Old Way";
+		   metadata.innerHTML = "Metadata View Updated Through The Old Way";
+		}
+
+		function ObserverWay() {
+			doc.trigger('info', 'View Updated Through The Old Way');
+		}
+		
+	</script>
+
+</head>
+<body>
+        <div id="menu">
+        		<h1>Menu</h1>
+                <ul>
+                        <li><a href="javascript:OldWay()">Old way</a></li>
+                        <li><a href="javascript:ObserverWay()">Observer way</a></li>
+                </ul>
+        </div>
+        <div id="contentPortlet">
+        	<h1>Content</h1>
+        	<div id="content"></div>        	
+        </div>
+        <div id="metadataPortlet">
+        	<h1>Detail</h1>
+        	<div id="metadata"></div>
+        </div>
+</body>
+</html>

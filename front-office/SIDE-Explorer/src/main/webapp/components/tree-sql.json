@@ -1,0 +1,26 @@
+[	{
+	    text:'Sql Manager...',
+	    url: 'http://www.lan.side-labs.org:8880/sqlbuddy/index.php',
+	    leaf: true
+	},
+	{
+	    text:'Graph 1',
+	    url: '/side-demo/auto-table-to-chart/graph1.html',
+	    leaf: true
+	},
+	{
+	    text:'Graph 2',
+	    url: '/side-demo/auto-table-to-chart/graph2.html',
+	    leaf: true
+	},
+	{
+	    text:'Graph 3',
+	    url: '/side-demo/auto-table-to-chart/graph3.html',
+	    leaf: true
+	},
+	{
+	    text:'Graph 4',
+	    url: '/side-demo/auto-table-to-chart/graph4.html',
+	    leaf: true
+	}
+]

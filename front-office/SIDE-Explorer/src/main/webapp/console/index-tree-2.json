@@ -1,0 +1,92 @@
+[
+{
+	text:'Build',
+	url: 'side-report.html',
+	id: '1111',
+	leaf: true
+},
+{
+	text:'Assets',
+	children: [
+		{
+			text:'Forms',
+			children: [{
+				text: 'Content Types',
+				children: metadata.getFormsTree('ct')
+			},
+			{
+				text: 'Data List Items',
+				children: metadata.getFormsTree('dl')
+			}]
+		},
+		{
+			text:'Search Forms',
+			children: [{
+				text: 'Content Types',
+				children: metadata.getFormsTree('ct', 'search')
+			},
+			{
+				text: 'Data List Items',
+				children: metadata.getFormsTree('dl', 'search')
+			}]
+		},
+		{
+			text:'Views',
+			children: [
+				{
+					text: "Raw",
+					children: [
+						{
+							text: "json",
+							children: metadata.getViewsTree('json').json
+						},
+						{
+							text: "xml",
+							children: metadata.getViewsTree('xml').xml
+						}
+					]
+				},
+				{
+					text: "ExtJs",
+					children: metadata.getViewsTree('extJs').extjs
+				}
+			]
+		},
+		{
+			text:'Charts',
+			loader: new Ext.tree.TreeLoader({
+				url: 'tree-asset-chart.json',
+				requestMethod: 'GET',
+				preloadChildren: true
+			})
+		}
+/*,
+		{
+			text:'Dashlets',
+			loader: new Ext.tree.TreeLoader({
+				url: 'tree-asset-dashlet.json',
+				requestMethod: 'GET',
+				preloadChildren: true
+			})
+		}
+*/
+	]
+},
+{
+	text:'Source',
+	loader: new Ext.tree.TreeLoader({
+		dataUrl: 'tree-source.json',
+		requestMethod: 'GET',
+		preloadChildren: true
+	})
+},
+{
+	text:'Alternate Share',
+	loader: new Ext.tree.TreeLoader({
+		url: 'tree-alternate-share.json',
+		requestMethod: 'GET',
+		preloadChildren: true
+	})
+}
+
+]
