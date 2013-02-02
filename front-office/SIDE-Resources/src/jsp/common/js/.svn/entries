@@ -1,43 +1,0 @@
-10
-
-dir
-26775
-http://svn.bluexml.com/private/SIDE-Resources/trunk/common/js
-http://svn.bluexml.com/private
-
-
-
-2011-08-04T10:37:05.343609Z
-26774
-jckermagoret
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-c4e9bb49-730a-0410-b52d-bc9a0859fdfe
-
-dojo
-dir
-
-extJs
-dir
-
-jquery
-dir
-
-misc
-dir
-
-side-labs
-dir
-
